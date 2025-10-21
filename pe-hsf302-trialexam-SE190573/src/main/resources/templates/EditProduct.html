@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/html"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Product</title>
+</head>
+<body>
+
+<div>
+    <form th:action="@{/update}" method="post" th:object="${product}">
+        <input type="hidden" th:field="*{productID}" />
+        Product Name: <input type="text" th:field="*{productName}" required minlength="5" maxlength="50"/><br>
+        Price: <input type="number" th:field="*{price}" required min="100"/><br>
+        Stock: <input type="number" th:field="*{stock}" required min="0" max="1000"/><br>
+        Category:
+        <select th:field="*{category.cateID}" required>
+            <option th:each="c : ${categories}"
+                    th:value="${c.cateID}"
+                    th:text="${c.cateName}">
+            </option>
+        </select><br>
+
+        <button type="submit">Update Product</button>
+    </form>
+</div>
+
+<!-- Error message -->
+<p style="color:red;" th:if="${error}" th:text="${error}"></p>
+
+<p><a href="/Home">Back to Home</a></p>
+
+</body>
+</html>
