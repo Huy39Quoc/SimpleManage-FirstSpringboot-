@@ -40,7 +40,7 @@
     </table>
     <br>
     <br>
-    <H1>Top 3 product</H1>
+    <H1 th:if="${user.getRoleID == 1}">Top 3 product</H1>
     <table th:if="${user.getRoleID == 1}" border="1">
         <tr>
             <th>Product Name</th>
